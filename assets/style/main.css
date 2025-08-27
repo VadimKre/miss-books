@@ -2,6 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
+/* Imports for css modules */
+@import './pages/AboutUs.css';
+@import './pages/HomePage.css';
+@import './pages/BookIndex.css';
+@import './pages/BookDetails.css';
+
 /* Vars */
 :root {
 	--clr1: rgb(96, 107, 91);
