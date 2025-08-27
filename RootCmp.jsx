@@ -8,6 +8,8 @@ export function RootCmp() {
             <AppHeader />
             <main>
                 <Home />
+
+                
             </main>
         </section>
     )
