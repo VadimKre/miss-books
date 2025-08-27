@@ -1,0 +1,21 @@
+.app-header {
+    background-color: #2E3A44;
+}
+
+.header-link {
+    margin-right: 20px;
+}
+
+.header-link:hover {
+    color: #E97A5C;
+}
+
+.header-logo {
+    max-width: 80px;
+
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+}
