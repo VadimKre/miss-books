@@ -3,7 +3,7 @@ import { AppHeader } from "./cmps/AppHeader.jsx"
 import { HomePage } from "./pages/HomePage.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
-import { BookDetails } from "./pages/BookDetails.jsx"
+import { BookDetails } from "./pages/BookPreview.jsx"
 
 
 const Router = ReactRouterDOM.HashRouter
