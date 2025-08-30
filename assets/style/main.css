@@ -1,6 +1,7 @@
 /* Setup */
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 /* Imports for css modules */
 @import './pages/AboutUs.css';
@@ -32,6 +33,8 @@
 	--mb-sage:#6FA5A5;
 	--mb-sand:#E8DCCB;
 	--mb-cream:#FAF5EF;
+
+	font-family: "Montserrat", Roboto;
 
 	
 }

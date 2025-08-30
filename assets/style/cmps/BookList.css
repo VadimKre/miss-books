@@ -1,8 +1,10 @@
 .book-list-container {
     display: flex;
-    align-items: center;
+    align-items: stretch; 
     justify-content: center;
     flex-wrap: wrap;
     column-gap: 50px;
     row-gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
