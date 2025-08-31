@@ -2,7 +2,7 @@ import { BookDescription } from "./BookDescription.jsx"
 
 const { useState, useEffect, useRef} = React
 
-export function BookPreview({ book }) {
+export function BookPreview({ book, blurBackground }) {
 
     const [hover, setHover] = useState(false)
 
@@ -17,7 +17,8 @@ export function BookPreview({ book }) {
         <div 
             className='book-preview-container'
             onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}>
+            onMouseLeave={() => setHover(false)}
+            onClick={() => blurBackground(false)}>
             <h3 
                 ref={elTitleRef} 
                 className='book-preview-title'>
@@ -26,7 +27,7 @@ export function BookPreview({ book }) {
             <BookDescription 
                 className='book-preview-description' 
                 desc={book.description} 
-                numOfCharToDisplay={110}
+                numOfCharToDisplay={130}
             />
             <p className='book-preview-authors'>By: { book.authors }</p>
         </div>
