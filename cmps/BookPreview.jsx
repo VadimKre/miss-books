@@ -1,6 +1,9 @@
 import { BookDescription } from "./BookDescription.jsx"
+import { BookDetails } from "../pages/BookDetails.jsx"
 
 const { useState, useEffect, useRef} = React
+
+const { Link } = ReactRouterDOM
 
 export function BookPreview({ book, diplayBookDetails }) {
 
@@ -14,6 +17,7 @@ export function BookPreview({ book, diplayBookDetails }) {
     }, [hover])
 
     return (
+    <Link to={`/books/${book.id}`}>
         <div 
             className='book-preview-container'
             onMouseEnter={() => setHover(true)}
@@ -31,5 +35,6 @@ export function BookPreview({ book, diplayBookDetails }) {
             />
             <p className='book-preview-authors'>By: { book.authors }</p>
         </div>
+    </Link>
     )
 }

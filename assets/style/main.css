@@ -12,7 +12,8 @@
 @import './cmps/BookList.css';
 @import './cmps/BookPreview.css';
 @import './cmps/BookDescription.css';
-@import './cmps/BookDetails.css';
+@import './pages/BookDetails.css';
+@import './cmps/BookFilter.css';
 
 /* Vars */
 :root {

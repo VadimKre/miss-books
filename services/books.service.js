@@ -10,6 +10,7 @@ export const bookService = {
     get,
     remove,
     save,
+    getDefaultFilter,
 //     getEmptyBook,
 //     getDefaultFilter,
 }
@@ -53,14 +54,14 @@ function _createBooks() {
 function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     cars = cars.filter(car => regExp.test(car.vendor))
-            // }
+            if (filterBy.name) {
+                const regExp = new RegExp(filterBy.name, 'i')
+                books = books.filter(book => regExp.test(book.title))
+            }
 
-            // if (filterBy.minSpeed) {
-            //     cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
-            // }
+            if (filterBy.price) {
+                books = books.filter(book => book.listPrice.amount >= filterBy.price)
+            }
 
             return books
         })
@@ -80,4 +81,8 @@ function save(book) {
     } else {
         return storageService.post(BOOK_KEY, book)
     }
+}
+
+function getDefaultFilter(filterBy = { name: '', price: 0 }) {
+    return { name: filterBy.name, price: filterBy.price }
 }
