@@ -1,7 +1,8 @@
 const { useParams, useNavigate } = ReactRouterDOM
 
-const { useEffect, useState } = React
+const { useEffect, useState, useRef } = React
 
+// import { useRef } from 'react'
 import { bookService } from '../services/books.service.js'
 
 export function BookDetails({ bookDetails }){
@@ -9,11 +10,12 @@ export function BookDetails({ bookDetails }){
     const { bookId } = useParams()
     const navigate = useNavigate()
 
-    const[bookToDisplay, setBooksToDisplay] = useState(null)
+    const [bookToDisplay, setBooksToDisplay] = useState(null)
+
+    const bookPriceRef = useRef()
 
     useEffect ( () => {
         bookService.get(bookId).then((book) => setBooksToDisplay(book))
-
     }, [])
 
 
@@ -34,7 +36,33 @@ export function BookDetails({ bookDetails }){
             publishedDate,
             thumbnail
         } = bookToDisplay
-    
+
+        let pageText = ''
+
+        if (pageCount > 500){
+            pageText = 'Serious Reading'
+        } 
+
+        else if (pageCount > 200){
+            pageText = 'Descent Reading'
+        }
+
+        else if (pageCount < 100){
+            pageText = 'Light Reading'
+        }
+
+        let dateText = ''
+
+
+        if (new Date().getFullYear() - publishedDate > 10){
+            dateText = 'Vintage'
+        } 
+
+        else if (new Date().getFullYear() - publishedDate < 1){
+            dateText = 'New'
+        } 
+
+
             return(
         
             <section className='book-details-section'>
@@ -42,7 +70,7 @@ export function BookDetails({ bookDetails }){
                 <p>{title}</p>
 
                 <h3>Subtitle</h3>
-                <p>{subtitle }</p>
+                <p>{subtitle}</p>
 
                 <h3>Authors</h3>
                 <p>{authors.length ? authors.join(', ') : '—'}</p>
@@ -57,13 +85,19 @@ export function BookDetails({ bookDetails }){
                 <p>{language}</p>
 
                 <h3>Page Count</h3>
-                <p>{pageCount}</p>
+                <p>{pageCount + ' - ' +  pageText}</p>
 
                 <h3>Published</h3>
-                <p>{publishedDate }</p>
+                <p>{publishedDate + ' - ' + dateText}</p>
 
                 <h3>List Price</h3>
-                <p>
+                <p className={ 
+                    listPrice.amount > 150
+                        ? 'red'
+                        : listPrice.amount < 20
+                        ? 'green'
+                        : ''
+                }>
                     {listPrice.amount}
                 </p>
             </section>

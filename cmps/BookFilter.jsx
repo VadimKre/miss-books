@@ -8,16 +8,6 @@ export function BookFilter({ filterBy, onSetFilterBy}) {
 
     const [filterToEditBy, setFilterToEditBy] = useState({ ...filterBy })
 
-    // function handleNameChange({ target: { name, value }  }) {
-    //     console.log('target.name: ', target.name)
-    //     setFilterToEditBy( (prev) => ({ ...prev, [name]: value}))
-    // }
-
-    // function handlePriceChange({ target: { name, value }  }) {
-    //     console.log('target.price: ', target.price)
-    //     setFilterToEditBy( (prev) => ({ ...prev, price: target.price}))
-    // }
-
     function handleChange({ target: { name, value } }) {
         setFilterToEditBy(prev => ({
             ...prev,
