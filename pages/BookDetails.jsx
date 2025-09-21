@@ -7,24 +7,48 @@ import { bookService } from '../services/books.service.js'
 
 export function BookDetails({ bookDetails }){
 
-    const { bookId, nextBookID, prevBookID } = useParams()
+    const { bookId } = useParams()
     const navigate = useNavigate()
 
     const [bookToDisplay, setBooksToDisplay] = useState(null)
+    const [nextBookId, setNextBookId] = useState(null)
+    const [prevBookId, setPrevBookId] = useState(null)
 
     const bookPriceRef = useRef()
 
     useEffect ( () => {
-        bookService.get(bookId).then((book) => setBooksToDisplay(book))
-    }, [])
+        let isCancelled = false
+
+        setBooksToDisplay(null)
+        setNextBookId(null)
+        setPrevBookId(null)
+
+        bookService.get(bookId).then((book) => {
+            if (!isCancelled) setBooksToDisplay(book)
+        })
+
+        bookService.getNextBookId(bookId).then((id) => {
+            if (!isCancelled) setNextBookId(id)
+        })
+
+        bookService.getPrevBookId(bookId).then((id) => {
+            if (!isCancelled) setPrevBookId(id)
+        })
+
+        return () => {
+            isCancelled = true
+        }
+    }, [bookId])
 
 
     function onClickPrev(){
-        console.log('nextBookID: ', nextBookID)
+        if (!prevBookId) return
+        navigate(`/books/${prevBookId}`)
     }
 
     function onClickNext(){
-        console.log('prevBookID: ', prevBookID)
+        if (!nextBookId) return
+        navigate(`/books/${nextBookId}`)
     }
     
 
@@ -109,8 +133,8 @@ export function BookDetails({ bookDetails }){
                 </p>
 
                 <div className='book-details-buttons-container'>
-                    <button className='book-details-button-prev' onClick={onClickPrev}>Previous</button>
-                    <button className='book-details-button-next' onClick={onClickNext}>Next</button>
+                    <button className='book-details-button-prev' onClick={onClickPrev} disabled={!prevBookId}>Previous</button>
+                    <button className='book-details-button-next' onClick={onClickNext} disabled={!nextBookId}>Next</button>
                 </div>
             </section>
     

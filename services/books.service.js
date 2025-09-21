@@ -11,6 +11,8 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
+    getNextBookId,
+    getPrevBookId,
 //     getEmptyBook,
 //     getDefaultFilter,
 }
@@ -81,6 +83,26 @@ function save(book) {
     } else {
         return storageService.post(BOOK_KEY, book)
     }
+}
+
+function getNextBookId(bookId) {
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            const idx = books.findIndex(book => book.id === bookId)
+            if (idx === -1) return null
+            const nextBook = books[idx + 1]
+            return nextBook ? nextBook.id : null
+        })
+}
+
+function getPrevBookId(bookId) {
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            const idx = books.findIndex(book => book.id === bookId)
+            if (idx === -1) return null
+            const prevBook = books[idx - 1]
+            return prevBook ? prevBook.id : null
+        })
 }
 
 function getDefaultFilter(filterBy = { name: '', price: 0 }) {

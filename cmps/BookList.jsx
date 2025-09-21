@@ -8,8 +8,8 @@ export function BookList({ books, diplayBookDetails }) {
         <BookPreview 
             key={book.id} 
             book={book} 
-            nextBookID={books[i+1].id}  
-            prevBookID={books[i-1].id} 
+            // nextBookID={books[i+1].id}  
+            // prevBookID={books[i-1].id} 
             diplayBookDetails={diplayBookDetails}
         />)
 
