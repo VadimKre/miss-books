@@ -7,7 +7,7 @@ import { bookService } from '../services/books.service.js'
 
 export function BookDetails({ bookDetails }){
 
-    const { bookId } = useParams()
+    const { bookId, nextBookID, prevBookID } = useParams()
     const navigate = useNavigate()
 
     const [bookToDisplay, setBooksToDisplay] = useState(null)
@@ -19,6 +19,13 @@ export function BookDetails({ bookDetails }){
     }, [])
 
 
+    function onClickPrev(){
+        console.log('nextBookID: ', nextBookID)
+    }
+
+    function onClickNext(){
+        console.log('prevBookID: ', prevBookID)
+    }
     
 
     if (bookToDisplay){
@@ -100,6 +107,11 @@ export function BookDetails({ bookDetails }){
                 }>
                     {listPrice.amount}
                 </p>
+
+                <div className='book-details-buttons-container'>
+                    <button className='book-details-button-prev' onClick={onClickPrev}>Previous</button>
+                    <button className='book-details-button-next' onClick={onClickNext}>Next</button>
+                </div>
             </section>
     
     )}

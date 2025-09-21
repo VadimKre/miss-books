@@ -42,7 +42,7 @@ export function BookIndex(){
         blurBackground(false)
         setBookDetails(book)
         
-        console.log('book: ', book)
+        // console.log('book: ', book)
     }
 
     function onSetFilterBy(filterBy) {
