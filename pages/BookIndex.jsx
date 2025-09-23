@@ -3,6 +3,7 @@ import { bookService } from '../services/books.service.js'
 import { BookList } from '../cmps/BookList.jsx'
 import { BookDetails } from '../pages/BookDetails.jsx'
 import { BookFilter } from '../cmps/BookFilter.jsx'
+import { BookAdd } from '../cmps/BookAdd.jsx'
 
 const { useState, useEffect, useRef} = React
 
@@ -61,7 +62,7 @@ export function BookIndex(){
             </div>
             <BookFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy}/>
 
-            {/* {bookDetails && <BookDetails bookDetails={bookDetails}/>} */}
+            <BookAdd />
             <BookList 
                 books={booksToDisplay} 
                 diplayBookDetails={diplayBookDetails}/>

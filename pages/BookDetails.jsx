@@ -5,6 +5,8 @@ const { useEffect, useState, useRef } = React
 // import { useRef } from 'react'
 import { bookService } from '../services/books.service.js'
 
+import { AddReview } from '../cmps/AddReview.jsx'
+
 export function BookDetails({ bookDetails }){
 
     const { bookId } = useParams()
@@ -13,6 +15,7 @@ export function BookDetails({ bookDetails }){
     const [bookToDisplay, setBooksToDisplay] = useState(null)
     const [nextBookId, setNextBookId] = useState(null)
     const [prevBookId, setPrevBookId] = useState(null)
+    const [isAddReviewOpen, setIsAddReviewOpen] = useState(false)
 
     const bookPriceRef = useRef()
 
@@ -51,6 +54,17 @@ export function BookDetails({ bookDetails }){
         navigate(`/books/${nextBookId}`)
     }
     
+    function openAddReview(){
+        setIsAddReviewOpen(true)
+    }
+    function closeAddReview(){
+        setIsAddReviewOpen(false)
+    }
+
+    function refreshBook(){
+        bookService.get(bookId).then(setBooksToDisplay)
+    }
+    
 
     if (bookToDisplay){
         // console.log('book.title: ', bookToDisplay)
@@ -65,7 +79,8 @@ export function BookDetails({ bookDetails }){
             listPrice = {},
             pageCount,
             publishedDate,
-            thumbnail
+            thumbnail,
+            reviews,
         } = bookToDisplay
 
         let pageText = ''
@@ -93,10 +108,13 @@ export function BookDetails({ bookDetails }){
             dateText = 'New'
         } 
 
-
             return(
         
             <section className='book-details-section'>
+                <div className='book-details-buttons-container'>
+                    <button className='book-details-button-prev' onClick={onClickPrev} disabled={!prevBookId}>Previous</button>
+                    <button className='book-details-button-next' onClick={onClickNext} disabled={!nextBookId}>Next</button>
+                </div>
                 <h3>Title</h3>
                 <p>{title}</p>
 
@@ -132,11 +150,40 @@ export function BookDetails({ bookDetails }){
                     {listPrice.amount}
                 </p>
 
-                <div className='book-details-buttons-container'>
-                    <button className='book-details-button-prev' onClick={onClickPrev} disabled={!prevBookId}>Previous</button>
-                    <button className='book-details-button-next' onClick={onClickNext} disabled={!nextBookId}>Next</button>
+                <div>
+                    <button onClick={openAddReview}>Add Review</button>
                 </div>
+
+                {reviews && (
+                    <div className='book-details-reviews-container'>
+                        {reviews.map((review, idx) => {
+                            return (
+                                <div key={id + '_rev_' + idx} className='review-container'>
+                                    <div className='review-header'>
+                                        <p className='review-name'>{review.name}</p>
+                                        <p className='review-date'>{review.date}</p>
+                                    </div>
+                                    <div className='review-stars'>
+                                        {[1,2,3,4,5].map(star => (
+                                            <span key={star} className={'review-star ' + (star <= review.rating ? 'is-filled' : '')}>☆</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                )}
+
+                {isAddReviewOpen && (
+                    <div>
+                        <div className='book-details-overlay' onClick={closeAddReview}></div>
+                        <div className='book-details-modal'>
+                            <button className='book-details-modal-close' onClick={closeAddReview}>×</button>
+                            <AddReview bookID={bookId} onSubmitted={() => { refreshBook(); closeAddReview() }} />
+                        </div>
+                    </div>
+                )}
             </section>
-    
+
     )}
 }

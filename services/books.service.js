@@ -13,6 +13,7 @@ export const bookService = {
     getDefaultFilter,
     getNextBookId,
     getPrevBookId,
+    addReview,
 //     getEmptyBook,
 //     getDefaultFilter,
 }
@@ -78,12 +79,21 @@ function remove(bookId) {
 }
 
 function save(book) {
-    if (car.id) {
+    if (book.id) {
         return storageService.put(BOOK_KEY, book)
     } else {
         return storageService.post(BOOK_KEY, book)
     }
 }
+
+function addReview(bookId, review){
+    return get(bookId)
+        .then((book) => {
+            const updated = { ...book, reviews: book.reviews ? [...book.reviews, review] : [review] }
+            return save(updated)
+        })
+}
+
 
 function getNextBookId(bookId) {
     return storageService.query(BOOK_KEY)

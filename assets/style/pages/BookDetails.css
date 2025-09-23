@@ -1,5 +1,36 @@
+/* Modal + overlay */
+.book-details-overlay {
+    position: absolute;
+    height: 100%;
+    width: 120%;
+    top: 0;
+    left: -10%;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
 .book-details-modal {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     z-index: 3;
+    max-width: 560px;
+    width: calc(100% - 2rem);
+}
+
+.book-details-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 1.3rem;
+    line-height: 1;
+    background: transparent;
 }
 
 .red{
@@ -15,7 +46,34 @@
 .book-details-buttons-container{
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
 }
+
+/* Reviews styling */
+.book-details-reviews-container {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.review-container {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: var(--mb-cream);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.review-name { font-weight: 600; }
+.review-date { color: var(--gray2); }
+
+.review-stars { font-size: 1.2rem; }
+.review-star { margin-right: 2px; }
+
 
 

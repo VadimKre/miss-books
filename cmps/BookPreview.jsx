@@ -1,5 +1,6 @@
 import { BookDescription } from "./BookDescription.jsx"
 import { BookDetails } from "../pages/BookDetails.jsx"
+import { AddReview } from "./AddReview.jsx"
 
 const { useState, useEffect, useRef} = React
 
@@ -35,6 +36,7 @@ export function BookPreview({ book, diplayBookDetails }) {
             />
             <p className='book-preview-authors'>By: { book.authors }</p>
         </div>
+        
     </Link>
     )
 }

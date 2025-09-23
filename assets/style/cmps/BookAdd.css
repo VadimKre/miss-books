@@ -1,0 +1,65 @@
+/* BookAdd component */
+.book-add {
+  margin: 1rem 0;
+}
+
+.book-add-input {
+  width: 100%;
+  max-width: 520px;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--gray1);
+  border-radius: 6px;
+}
+
+.book-add-status {
+  margin-top: 0.5rem;
+  color: var(--gray2);
+}
+
+.book-add-error {
+  margin-top: 0.5rem;
+  color: #b00020;
+}
+
+.book-add-results {
+  margin-top: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.book-add-result {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--gray1);
+}
+
+.book-add-thumb {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: var(--gray1);
+}
+
+.book-add-meta {
+  min-width: 0;
+}
+
+.book-add-title {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.book-add-authors {
+  color: var(--gray2);
+  font-size: 0.9rem;
+}
+
+.book-add-btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
