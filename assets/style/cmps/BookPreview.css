@@ -2,22 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    width: 20%;
-    border: 0px solid;
+    justify-content: flex-start;
+    width: 22%;
     border-radius: 12px;
-    padding: 8px;
+    padding: 10px;
     box-shadow:
         0 1px 2px rgba(0,0,0,.8),
         0 4px 12px rgba(0,0,0,.6);
-    min-width: 180px;
-    max-width: 220px;
+    min-width: 200px;
+    max-width: 260px;
     background-color: var(--mb-ink);
     color: var(--mb-cream);
     position: relative;
-    min-height: 250px;
-    max-height: 300px;
-    transition: all 0.05s;
+    min-height: 360px;
+    transition: transform 0.08s ease;
+    font-size: 0.95rem;
 }
 
 .book-preview-container:hover {
@@ -28,20 +27,40 @@
 .book-preview-title {
     margin: 0px;
     text-align: center;
-    height: 35%;
+    min-height: 48px;
     display: flex;
     align-items: center;
     color: var(--mb-honey);
 }
 
-.book-preview-description {
-    height: 50%;
-    
-}
+.book-preview-description { }
 
 .book-preview-authors {
-    height: 25%;
+    margin-top: auto;
     display: flex;
     align-items: flex-end;
+    font-size: 0.85rem;
+}
+
+.book-preview-thumb {
+    width: 100%;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--gray1);
+    margin-bottom: 8px;
+}
+
+.book-preview-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.book-preview-desc-label {
+    align-self: flex-start;
+    margin: 6px 0 2px;
+    font-weight: 600;
     font-size: 0.9rem;
 }

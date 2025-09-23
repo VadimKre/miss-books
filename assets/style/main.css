@@ -44,9 +44,13 @@
 	
 }
 
+/* Ensure the app background covers full page height, even when scrolling */
 #root {
-	background-color: var(--mb-cream);
-	height: 100vh;
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--mb-cream);
 }
 
 main{

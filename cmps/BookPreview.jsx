@@ -24,11 +24,15 @@ export function BookPreview({ book, diplayBookDetails }) {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             onClick={() => diplayBookDetails(book)}>
+            <div className='book-preview-thumb'>
+                <img src={book.thumbnail} alt={book.title} />
+            </div>
             <h3 
                 ref={elTitleRef} 
                 className='book-preview-title'>
                     { book.title }
             </h3>
+            <p className='book-preview-desc-label'>Description:</p>
             <BookDescription 
                 className='book-preview-description' 
                 desc={book.description} 
